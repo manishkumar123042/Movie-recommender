@@ -1,30 +1,20 @@
-# ==========================================
-# Import Libraries
-# ==========================================
-
 import streamlit as st
 import pandas as pd
 import ast
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
-
 # ==========================================
 # Page Configuration
 # ==========================================
-
 st.set_page_config(
     page_title="Movie Recommendation System",
     page_icon="🎬",
     layout="wide"
 )
-
-
 # ==========================================
 # Sidebar
 # ==========================================
-
 st.sidebar.title("🎬 Movie Recommendation")
 
 st.sidebar.markdown("---")
@@ -43,8 +33,6 @@ TMDB 5000 Movie Dataset
 """)
 
 st.sidebar.markdown("---")
-
-
 # ==========================================
 # Load Dataset
 # ==========================================
@@ -144,7 +132,9 @@ movies["tags"] = (
 movies["tags"] = movies["tags"].apply(
     lambda x: " ".join(x).lower()
 )
+st.subheader("📝 Overview")
 
+st.write(movie["overview_display"])
 
 # ==========================================
 # TF-IDF Vectorizer
