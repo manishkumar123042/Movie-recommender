@@ -117,23 +117,20 @@ movies["keywords"] = movies["keywords"].apply(
 # Process Overview
 # ==========================================
 
-# Keep original overview
-movies["overview_display"] = movies["overview"]
+# Save original overview
+movies["overview_original"] = movies["overview"]
 
-# Process overview only for recommendation
-movies["overview"] = movies["overview"].apply(lambda x: x.split())
+# Create a separate column for TF-IDF
+movies["overview_words"] = movies["overview"].apply(lambda x: x.split())
 
+# Create tags for recommendation
 movies["tags"] = (
-    movies["overview"]
+    movies["overview_words"]
     + movies["genres"]
     + movies["keywords"]
 )
 
-movies["tags"] = movies["tags"].apply(
-    lambda x: " ".join(x).lower()
-)
-
-
+movies["tags"] = movies["tags"].apply(lambda x: " ".join(x).lower())
 # ==========================================
 # TF-IDF Vectorizer
 # ==========================================
