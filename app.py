@@ -52,12 +52,9 @@ def load_data():
 
 
 movies = load_data()
-
-
 # ==========================================
 # Keep Required Columns
 # ==========================================
-
 movies = movies[
     [
         "title",
@@ -71,19 +68,13 @@ movies = movies[
         "original_language"
     ]
 ]
-
-
 # ==========================================
 # Remove Missing Values
 # ==========================================
-
 movies.dropna(inplace=True)
-
-
 # ==========================================
 # Convert Genres
 # ==========================================
-
 def convert(text):
 
     result = []
@@ -98,12 +89,9 @@ def convert(text):
 movies["genres"] = movies["genres"].apply(convert)
 
 movies["keywords"] = movies["keywords"].apply(convert)
-
-
 # ==========================================
 # Clean Genre & Keyword Names
 # ==========================================
-
 movies["genres"] = movies["genres"].apply(
     lambda x: [i.replace(" ", "") for i in x]
 )
@@ -111,19 +99,13 @@ movies["genres"] = movies["genres"].apply(
 movies["keywords"] = movies["keywords"].apply(
     lambda x: [i.replace(" ", "") for i in x]
 )
-
-
 # ==========================================
 # Process Overview
 # ==========================================
-
-# Save original overview
 movies["overview_original"] = movies["overview"]
 
-# Create a separate column for TF-IDF
 movies["overview_words"] = movies["overview"].apply(lambda x: x.split())
 
-# Create tags for recommendation
 movies["tags"] = (
     movies["overview_words"]
     + movies["genres"]
@@ -134,7 +116,6 @@ movies["tags"] = movies["tags"].apply(lambda x: " ".join(x).lower())
 # ==========================================
 # TF-IDF Vectorizer
 # ==========================================
-
 tfidf = TfidfVectorizer(
     stop_words="english"
 )
@@ -286,7 +267,7 @@ if selected_movie:
 
     st.divider()
 
-    # ==========================================
+# ==========================================
 # Recommend Movies
 # ==========================================
 
@@ -347,8 +328,6 @@ if selected_movie:
                     )
 
                 st.divider()
-
-
 # ==========================================
 # Dashboard
 # ==========================================
