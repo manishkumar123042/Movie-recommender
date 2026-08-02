@@ -365,16 +365,10 @@ if selected_movie:
                         genres
                     )
 
-                st.write("📝 Overview")
-
-                overview = " ".join(movie["overview"])
-
-                st.write(overview)
-
                 st.divider()
 
 
-                # ==========================================
+# ==========================================
 # Dashboard
 # ==========================================
 
@@ -511,71 +505,7 @@ st.dataframe(
     ],
     use_container_width=True
 )
-# ==========================================
-# Genre Distribution
-# ==========================================
 
-st.subheader("🎭 Genre Distribution")
-
-genre_count = (
-    movies["genres"]
-    .explode()
-    .value_counts()
-    .head(10)
-)
-
-fig, ax = plt.subplots(figsize=(8, 5))
-
-genre_count.plot(
-    kind="bar",
-    ax=ax
-)
-
-ax.set_xlabel("Genre")
-ax.set_ylabel("Number of Movies")
-
-st.pyplot(fig)
-# ==========================================
-# Rating Distribution
-# ==========================================
-
-st.subheader("⭐ Rating Distribution")
-
-fig, ax = plt.subplots(figsize=(8, 5))
-
-ax.hist(
-    movies["vote_average"],
-    bins=20
-)
-
-ax.set_xlabel("Rating")
-ax.set_ylabel("Movies")
-
-st.pyplot(fig)
-# ==========================================
-# Language Distribution
-# ==========================================
-
-st.subheader("🌍 Top Languages")
-
-language_count = (
-    movies["original_language"]
-    .value_counts()
-    .head(10)
-)
-
-fig, ax = plt.subplots(figsize=(8, 5))
-
-language_count.plot(
-    kind="bar",
-    ax=ax
-)
-
-ax.set_xlabel("Language")
-ax.set_ylabel("Movies")
-
-st.pyplot(fig)
-st.divider()
 
 st.markdown(
     """
