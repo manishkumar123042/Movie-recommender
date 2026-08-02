@@ -132,9 +132,7 @@ movies["tags"] = (
 movies["tags"] = movies["tags"].apply(
     lambda x: " ".join(x).lower()
 )
-st.subheader("📝 Overview")
 
-st.write(movie["overview_display"])
 
 # ==========================================
 # TF-IDF Vectorizer
