@@ -494,7 +494,6 @@ st.dataframe(
 st.markdown(
     """
     <center>
-    <h4>🎬 Movie Recommendation System</h4>
     <p>Developed using Streamlit, TF-IDF and Cosine Similarity</p>
     </center>
     """,
