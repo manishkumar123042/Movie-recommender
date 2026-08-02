@@ -129,21 +129,17 @@ movies["keywords"] = movies["keywords"].apply(
 # Process Overview
 # ==========================================
 
-movies["overview"] = movies["overview"].apply(
-    lambda x: x.split()
-)
+# Keep original overview
+movies["overview_display"] = movies["overview"]
 
-
-# ==========================================
-# Create Tags
-# ==========================================
+# Process overview only for recommendation
+movies["overview"] = movies["overview"].apply(lambda x: x.split())
 
 movies["tags"] = (
     movies["overview"]
     + movies["genres"]
     + movies["keywords"]
 )
-
 
 movies["tags"] = movies["tags"].apply(
     lambda x: " ".join(x).lower()
